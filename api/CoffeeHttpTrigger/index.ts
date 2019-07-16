@@ -9,13 +9,13 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     if (email) {
         context.res = {
             status: 200, /* Defaults to 200 */
-            body: "New Email Saved: " + email
+            body:  { response: "New Email Saved: " + email } 
         };
     }
     else {
         context.res = {
             status: 400,
-            body: "Please provide an email"
+            body: { response: "Please provide an email" }
         };
     }
 };
