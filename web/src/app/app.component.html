@@ -1,0 +1,8 @@
+<router-outlet></router-outlet>
+
+
+
+<form (ngSubmit)="onSubmit(form)" [formGroup]="form">
+  <input type="email" name="email" id="email" formControlName="email">
+  <input type="submit" value="Submit">
+</form>
