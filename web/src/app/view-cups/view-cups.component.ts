@@ -9,6 +9,7 @@ import { CoffeeService } from '../services/coffee.service';
 export class ViewCupsComponent implements OnInit {
 
   cups: number;
+  cups$: number;
 
   constructor(private coffeeService: CoffeeService) { }
 

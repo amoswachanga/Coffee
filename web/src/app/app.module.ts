@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ViewCupsComponent } from './view-cups/view-cups.component';
+import { StoreModule } from '@ngrx/store';
+import { appReducer } from './store/reducer';
 
 @NgModule({
   declarations: [
@@ -17,9 +19,11 @@ import { ViewCupsComponent } from './view-cups/view-cups.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot( { cupsStore: appReducer } )
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

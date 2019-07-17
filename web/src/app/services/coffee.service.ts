@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CoffeeService {
 
-  private cups: number;
+  private cups = 0;
 
   constructor(private http: HttpClient) { }
 

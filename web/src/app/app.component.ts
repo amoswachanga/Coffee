@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CoffeeService } from './services/coffee.service';
-import { from } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +14,19 @@ export class AppComponent implements OnInit {
   form: FormGroup;
   submitResponse: string = null;
   cupsInApp: number = 0;
+  cupNgrx$: Observable<{ cups: number }>; // Updated
 
-  constructor(private formBuilder: FormBuilder, private coffeeService: CoffeeService) {  }
+  constructor(
+      private formBuilder: FormBuilder, 
+      private coffeeService: CoffeeService, 
+      private store: Store<{ cups: number }>
+    ) {
+
+    this.cupNgrx$ = store.pipe(select('cupsStore'));
+
+    this.cupNgrx$.subscribe(val => console.log(val)); // Updated
+
+    }
 
   ngOnInit() {
     this.form = this.formBuilder.group(
@@ -32,7 +43,6 @@ export class AppComponent implements OnInit {
       this.coffeeService.setCups(formResponse.value.cups);
 
       this.cupsInApp = this.coffeeService.getCups();
-
 
       // Submit Email to Backend
       // const emailToSubmit = {
