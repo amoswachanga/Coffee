@@ -13,52 +13,45 @@ export class AppComponent implements OnInit {
 
   form: FormGroup;
   submitResponse: string = null;
+  cups: number = 0;
 
-  constructor(private formBuilder: FormBuilder, private coffeeService: CoffeeService) {}
+  constructor(private formBuilder: FormBuilder, private coffeeService: CoffeeService) {  }
 
   ngOnInit() {
     this.form = this.formBuilder.group(
       {
-        email: [ 'email@email.com' ]
+        // email: [ ''],
+        cups: [ this.coffeeService.getCups(), [Validators.required, Validators.min(0), Validators.max(100)] ]
       }
     );
-
-    // const myObservable = from([1, 2, 3, 4, 5, 6, 7]);
-
-    // myObservable.pipe(
-    //   map(value => {
-    //     console.log("map function 1: " + value);
-    //     return value + 10;
-    //   }),
-    //   map(value => {
-    //     console.log("map 2: " + value);
-    //     return value + 100;
-    //   }),
-    // ).subscribe(
-    //   (value) => {
-    //     console.log( "sub1: " + value);
-    //   },
-    //   (error) => {
-    //     console.error(error);
-    //   }
-    // );
   }
 
-  onSubmit(response: FormGroup) {
-    // console.log(event.value);
-    // if (!response.pristine) {
-    this.coffeeService.submitEmailForm(response.value).subscribe(successMessage => {
-      console.log(successMessage);
-      this.submitResponse = successMessage.response;
-      // this.submitResponse = (<{response: string}>successMessage).response;
-      // this.submitResponse = (successMessage as { response: string }).response;
-    }, failureMessage => {
-      console.log(failureMessage);
-      this.submitResponse = failureMessage.response;
-    });
-    // } else {
-    //   console.error("Please edit the value");
-    // }
+  onSubmit(formResponse: FormGroup) {
+    if (formResponse.valid) {
+      // Update the cups value in the service
+      this.coffeeService.setCups(formResponse.value.cups);
+
+
+      // Submit Email to Backend
+      // const emailToSubmit = {
+      //   email: formResponse.value.email
+      // };
+      // this.coffeeService.submitEmailForm(emailToSubmit).subscribe(successMessage => {
+      //   console.log(successMessage);
+      //   this.submitResponse = successMessage.response;
+
+      //   // Other Samples
+      //   // this.submitResponse = (<{response: string}>successMessage).response;
+      //   // this.submitResponse = (successMessage as { response: string }).response;
+      // }, failureMessage => {
+      //   console.log(failureMessage);
+      //   this.submitResponse = failureMessage.response;
+      // });
+
+    } else {
+      console.error("Please provide all required values");
+      this.submitResponse = "Please provide all required values";
+    }
   }
 
 

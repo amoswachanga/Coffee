@@ -1,12 +1,18 @@
-<router-outlet></router-outlet>
-
-
-
 <form (ngSubmit)="onSubmit(form)" [formGroup]="form">
-  <input type="email" name="email" id="email" formControlName="email">
+  <!-- <input type="email" placeholder="email@email.com" name="email" id="email" formControlName="email"> -->
+  <br>
+  <input type="number" name="cups" id="cups" formControlName="cups">
+  <br>
   <input type="submit" value="Submit">
 </form>
 
 <div *ngIf="submitResponse">
   {{submitResponse}}
 </div>
+<br>
+
+<p>
+  Number of cups is: {{cups}}
+</p>
+
+<router-outlet></router-outlet>
