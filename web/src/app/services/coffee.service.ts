@@ -19,12 +19,14 @@ export class CoffeeService {
   }
 
   public getCups(): number {
+    console.log("[CoffeeService] Current value of cups is: "+this.cups);
     return this.cups;
   }
 
   public setCups(val: number) {
-    console.log("Cups has been updated to: " + val);
-    this.cups = val;
+    console.log("[CoffeeService] Cups has been updated to: " + val);
+    this.cups = this.cups + val;
+    this.getCups();
   }
 
 

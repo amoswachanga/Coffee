@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   form: FormGroup;
   submitResponse: string = null;
-  cups: number = 0;
+  cupsInApp: number = 0;
 
   constructor(private formBuilder: FormBuilder, private coffeeService: CoffeeService) {  }
 
@@ -30,6 +30,8 @@ export class AppComponent implements OnInit {
     if (formResponse.valid) {
       // Update the cups value in the service
       this.coffeeService.setCups(formResponse.value.cups);
+
+      this.cupsInApp = this.coffeeService.getCups();
 
 
       // Submit Email to Backend
