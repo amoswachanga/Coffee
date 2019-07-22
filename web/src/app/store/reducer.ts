@@ -19,5 +19,37 @@ export function appReducer(state = initialState, action: Action): State {
     const newState = state;
 
 
+
     return newState;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Sample Action
+// if (action.type === increment.type) {
+//     newState.cups = state.cups + 1;
+// }

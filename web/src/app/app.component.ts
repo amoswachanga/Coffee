@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
   cupNgrx$: Observable<{ cups: number }>; // Updated
 
   constructor(
-      private formBuilder: FormBuilder, 
-      private coffeeService: CoffeeService, 
+      private formBuilder: FormBuilder,
+      private coffeeService: CoffeeService,
       private store: Store<{ cups: number }>
     ) {
 
@@ -39,12 +39,13 @@ export class AppComponent implements OnInit {
 
   onSubmit(formResponse: FormGroup) {
     if (formResponse.valid) {
-      // Update the cups value in the service
+      // ### Update the cups value in the service
       this.coffeeService.setCups(formResponse.value.cups);
 
       this.cupsInApp = this.coffeeService.getCups();
 
-      // Submit Email to Backend
+
+      // ### Submit Email to Backend
       // const emailToSubmit = {
       //   email: formResponse.value.email
       // };
@@ -71,3 +72,8 @@ export class AppComponent implements OnInit {
 
 
 }
+
+
+
+      // REF: ### Dispatch an action with a payload
+      // this.store.dispatch({ type: '[Cups] Increment'});
