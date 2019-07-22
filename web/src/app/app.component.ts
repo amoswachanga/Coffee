@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CoffeeService } from './services/coffee.service';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
+import { increment, decrement, reset } from './store/reducer';
 
 @Component({
   selector: 'app-root',
@@ -67,8 +68,17 @@ export class AppComponent implements OnInit {
     }
   }
 
+  addCup() {
+    this.store.dispatch(increment);
+  }
 
+  removeCup() {
+    this.store.dispatch(decrement);
+  }
 
+  reset() {
+    this.store.dispatch(reset);
+  }
 
 
 }

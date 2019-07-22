@@ -18,9 +18,18 @@ export const reset = createAction('[Cups] Reset');
 export function appReducer(state = initialState, action: Action): State {
     const newState = state;
 
-
-
-    return newState;
+    if (action.type == increment.type) {
+        newState.cups = state.cups + 1;
+        return newState;
+    } else if (action.type == decrement.type) {
+        newState.cups = state.cups - 1;
+        return newState;
+    } else if (action.type == reset.type) {
+        newState.cups = 10;
+        return newState;
+    } else {
+        return newState;
+    }
 }
 
 
